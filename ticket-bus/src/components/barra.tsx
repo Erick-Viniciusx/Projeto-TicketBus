@@ -89,6 +89,7 @@ export function BarraOptions(){
                 justify-center 
                 items-center"
                 style={{marginRight: 8}}
+                onPress={() => router.push("/scheduling")}
                 >
                     <Feather name="user" color={colors.gray[300]} size={28}/>
                 </TouchableOpacity>

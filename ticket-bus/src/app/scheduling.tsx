@@ -4,10 +4,12 @@ import {Calendar, DateData, LocaleConfig} from "react-native-calendars"
 import { Feather } from "@expo/vector-icons"
 import { styles } from "@/styles/schedulingStyle"
 import { DayState } from "react-native-calendars/src/types"
+import { Button } from "@/components/button"
 
-export function SchedulingScreen(){
+export function Scheduling(){
     const [day, setDay] = useState<DateData>()
-    
+    const [isLoading, setIsLoading] = useState(false)
+
     return (
         <View className="flex-1 p-24">
         <Calendar
@@ -76,6 +78,8 @@ export function SchedulingScreen(){
         />
   
         <Text style={styles.selected}>Data selecionada: {day?.dateString}</Text>
+
+        <Button title="Agendar Ticket" isLoading={isLoading}/>
       </View>
     )
 }
