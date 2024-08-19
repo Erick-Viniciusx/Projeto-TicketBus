@@ -11,15 +11,21 @@ import {
     MaterialCommunityIcons , 
 } from "@expo/vector-icons"
 
+import React from "react"
+import { useNavigation } from "@react-navigation/native"
 import { colors } from "@/styles/colors"
+import { useRouter } from "expo-router"
 
 export function BarraOptions(){
+    const navigation = useNavigation();
+    const router = useRouter();
     return (
         <View className="h-28 flex flex-row space-x-6 items-end px-11 pb-6 -mt-6 ml-5">
             
             <View className="h-16">
                 <TouchableOpacity 
                 activeOpacity={0.7} 
+                onPress={() => router.push("/buyticket")}
                 className="
                 w-16
                 h-16
