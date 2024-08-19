@@ -1,7 +1,7 @@
 import { View, Text, StatusBar, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons"; 
 import { colors } from "@/styles/colors";
-import { Link, router, useRouter } from "expo-router";
+import { Link,  useRouter } from "expo-router";
 import { FontAwesome6, FontAwesome5, Entypo } from "@expo/vector-icons";
 import { green } from "react-native-reanimated/lib/typescript/reanimated2/Colors";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import { CardActivy } from "@/components/activy";
 
 
 export default function BuyTicket(){
-    const router = useRouter()
+   const router = useRouter()
    let number = 4
     return (
         <View className="flex-1  bg-black ">
@@ -111,7 +111,7 @@ export default function BuyTicket(){
                 justify-center 
                 items-center
                 "
-                onPress={() => router.push("/scheduling")}
+                onPress={() => router.push("./scheduling")}
                 style={{marginRight: 14}}
                 >
                   <View className="w-14 h-14 bg-green-800 justify-center items-center rounded-full ">
