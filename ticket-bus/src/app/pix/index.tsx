@@ -6,12 +6,12 @@ import { styles } from "@/styles/schedulingStyle"
 import { DayState } from "react-native-calendars/src/types"
 import { Button } from "@/components/button"
 
-export function Scheduling(){
+export default function PixScreen(){
     const [day, setDay] = useState<DateData>()
     const [isLoading, setIsLoading] = useState(false)
 
     return (
-        <View className="flex-1 p-24">
+        <View className="flex-1 p-24 bg-black">
         <Calendar
           style={styles.calendar}
           renderArrow={(direction: "right" | "left") => (

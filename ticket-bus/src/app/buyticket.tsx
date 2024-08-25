@@ -111,7 +111,7 @@ export default function BuyTicket(){
                 justify-center 
                 items-center
                 "
-                onPress={() => router.push("/scheduling")}
+                onPress={() => router.push("/pix")}
                 style={{marginRight: 14}}
                 >
                   <View className="w-14 h-14 bg-green-800 justify-center items-center rounded-full ">
