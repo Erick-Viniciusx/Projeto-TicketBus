@@ -80,6 +80,7 @@ export default function PixScreen(){
         <Text style={styles.selected}>Data selecionada: {day?.dateString}</Text>
 
         <Button title="Agendar Ticket" isLoading={isLoading}/>
+        <Button title="Cancelar Ticket" isLoading={isLoading}/>
       </View>
     )
 }
