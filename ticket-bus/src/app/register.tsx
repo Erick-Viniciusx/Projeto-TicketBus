@@ -7,13 +7,15 @@ import {
     Alert
 } from "react-native"
 
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+
 import { TouchableOpacity } from "react-native"
 
 import { Input } from "@/components/input"
 import { Button } from "@/components/button"
 
 import { Entypo } from "@expo/vector-icons"
+
 import { colors } from "@/styles/colors"
 
 import axios from 'axios'
@@ -25,23 +27,20 @@ const api = axios.create({
     baseURL: "http://192.168.0.15:8000",
 });
 
-export default function Home(){
+export default function Register(){
     const [code, setCode] = useState("")
     const [hidePass, setHidePass] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
-    const isNumeric = (str: string) => /^[0-9]+$/.test(str);
-    
+    const [nome, setNome] = useState("")
+
     function handleButton(){
        try{
             if(!email.trim() || !senha.trim()){
                 return Alert.alert("Login", "Preencha todos os campos!")
             }
 
-            if(isNumeric(email.trim())){
-                return Alert.alert("Login", "This is Numeric")
-            }
             
             Alert.alert("Login", "Login realizado com sucesso!", [
                 {text: "Ok", onPress: () => router.push("/menu")}
@@ -58,37 +57,26 @@ export default function Home(){
 
         try {
 
-            if(!email.trim() || !senha.trim()){
+            if(!email.trim() || !senha.trim() || !nome.trim()){
                 setIsLoading(false)
-                return Alert.alert("Login", "Preencha todos os campos!")
+                return Alert.alert("Registro", "Preencha todos os campos!")
             }
 
-            if(isNumeric(email.trim())){
-                const response = await api.postForm("/auth/validate_driver", {
-                    username: email,
-                    password: senha
-                }) 
-                
-                Alert.alert("Login", "Login realizado com sucesso!", [
-                    {text: "Ok", onPress: () => router.push("/driver")}
-                ])
-            }
-            else {
-                const response = await api.postForm("/auth/token", {
-                    username: email,
-                    password: senha
-                }) 
-                
-                Alert.alert("Login", "Login realizado com sucesso!", [
-                    {text: "Ok", onPress: () => router.push("/menu")}
-                ])
-            }
-            
+            const response = await api.post("/users", {
+                username: nome,
+                email: email,
+                password: senha
+            }) 
+
+            Alert.alert("Registo", "Usuário cadastrado com sucesso!", [
+                {text: "Ok", onPress: () => router.push("/")}
+            ])
                    
         }catch(error){
             if(axios.isAxiosError(error)){
                 setIsLoading(false)
-                if(error.response && error.response.status === 400){   
+                if(error.response && error.response.status === 400){
+                    
                     Alert.alert("Login", "Email ou senha inválido!")
                 }
                 else {
@@ -113,6 +101,18 @@ export default function Home(){
             />
 
             <View className="v-full mt-12 gap-3">
+
+                <Input>
+                    <Input.Field 
+                    placeholder="Nome" 
+                    onChangeText={setNome}
+                    />
+                    <Entypo
+                        name="user"
+                        color={colors.green[200]}
+                        size={20}
+                    />
+                </Input>
 
                 <Input>
                     <Input.Field 
@@ -150,15 +150,8 @@ export default function Home(){
                     </TouchableOpacity>
                 </Input>
 
-                <Button title="Fazer Login" onPress={validateUser} isLoading={isLoading}/>
+                <Button title="Cadastrar" onPress={validateUser} isLoading={isLoading}/>
                 
-                <Link href="/" className="text-gray-100 text-base font-regular text-center mt-5">
-                    Esqueceu a senha?
-                </Link>
-
-                <Link href="/register" className="text-green-600 text-base font-regular text-center">
-                    Não tem conta? Cadastre-se
-                </Link>
             </View>
 
         </View>

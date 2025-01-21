@@ -45,6 +45,7 @@ export function BarraOptions(){
             <View className="h-16">
                 <TouchableOpacity 
                 activeOpacity={0.7} 
+                onPress={() => router.push("/driver")}
                 className="
                 w-16
                 h-16
@@ -89,7 +90,7 @@ export function BarraOptions(){
                 justify-center 
                 items-center"
                 style={{marginRight: 8}}
-                onPress={() => router.push("/scheduling")}
+                onPress={() => router.push("/")}
                 >
                     <Feather name="user" color={colors.gray[300]} size={28}/>
                 </TouchableOpacity>
